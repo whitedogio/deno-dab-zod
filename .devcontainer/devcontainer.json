@@ -1,25 +1,25 @@
 {
-	"name": "Deno",
-	"build": {
-		"dockerfile": "./Dockerfile",
-		"context": "."
-	},
-	"features": {
-		"ghcr.io/devcontainers/features/common-utils:2": {
-			"installZsh": "true",
-			"username": "vscode",
-			"userUid": "1000",
-			"userGid": "1000",
-			"upgradePackages": "true"
-		},
-		"./local-features/deno": {}
-	},
-	"customizations": {
-		"vscode": {
-		  	"extensions": [
-				"denoland.vscode-deno"
-		  	]
-		}
-	},
-	"remoteUser": "vscode"
+  "name": "Deno",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": "."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "true"
+    },
+    "./local-features/deno": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "denoland.vscode-deno"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
 }
