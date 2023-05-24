@@ -1,4 +1,4 @@
-import { OpenBridgeRequest, OpenRequest } from "./open.ts";
+import { OpenRequest } from "./open.ts";
 
 Deno.test("agent-A -> DAB", () => {
   OpenRequest.parse({
@@ -24,7 +24,7 @@ Deno.test("agent-A -> DAB", () => {
 });
 
 Deno.test("DAB -> agent-B", () => {
-  OpenBridgeRequest.parse({
+  OpenRequest.parse({
     "type": "openRequest",
     "payload": {
       "app": {

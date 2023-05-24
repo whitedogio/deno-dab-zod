@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { AppIdentifier } from "./app_identifier.ts";
-import { RequestMetadata, ResponseMetadata } from "./metadata.ts";
-import { BridgeSource, Source } from "./source.ts";
 import { Context } from "./context.ts";
+import { RequestMetadata, ResponseMetadata } from "./metadata.ts";
+import { Source } from "./source.ts";
 
 export const OpenRequest = z
   .object({
@@ -19,18 +19,9 @@ export const OpenRequest = z
     meta: RequestMetadata
       // FIXME: should have destination
       .extend({
-        source: Source.omit({ desktopAgent: true }),
+        source: Source,
       })
       .strict(),
-  })
-  .strict();
-
-export const OpenBridgeRequest = OpenRequest
-  .extend({
-    meta: RequestMetadata
-      .extend({
-        source: BridgeSource,
-      }).strict(),
   })
   .strict();
 
