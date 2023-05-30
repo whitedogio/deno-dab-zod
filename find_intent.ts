@@ -9,6 +9,7 @@ export const FindIntentRequest = z.object({
   payload: z.object({
     intent: z.string(),
     context: Context.optional(),
+    resultType: z.string().optional(),
   }),
   meta: RequestMetadata
     .extend({ source: Source })

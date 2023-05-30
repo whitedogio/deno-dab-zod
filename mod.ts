@@ -9,6 +9,7 @@ import { Context } from "./context.ts";
 import { FindInstancesRequest, FindInstancesResponse } from "./find_instances.ts";
 import { FindIntentRequest, FindIntentResponse } from "./find_intent.ts";
 import { FindIntentsByContextRequest, FindIntentsByContextResponse } from "./find_intents_by_context.ts";
+import { GetAppMetadataRequest, GetAppMetadataResponse } from "./get_app_metadata.ts";
 import { Handshake, Hello } from "./hello_handshake.ts";
 import { DesktopAgentMetadata, ImplementationMetadata } from "./implementation_metadata.ts";
 import { IntentMetadata } from "./intent_metadata.ts";
@@ -30,6 +31,8 @@ export const messages = z.discriminatedUnion("type", [
   FindIntentResponse,
   FindIntentsByContextRequest,
   FindIntentsByContextResponse,
+  GetAppMetadataRequest,
+  GetAppMetadataResponse,
   Handshake,
   Hello,
   OpenRequest,
@@ -44,6 +47,7 @@ export const requestMessages = z.discriminatedUnion("type", [
   FindInstancesRequest,
   FindIntentRequest,
   FindIntentsByContextRequest,
+  GetAppMetadataRequest,
   Handshake,
   OpenRequest,
   RaiseIntentRequest,
@@ -54,6 +58,7 @@ export const responseMessages = z.discriminatedUnion("type", [
   FindInstancesResponse,
   FindIntentResponse,
   FindIntentsByContextResponse,
+  GetAppMetadataResponse,
   OpenResponse,
   RaiseIntentResponse,
   RaiseIntentResultResponse,
@@ -73,6 +78,8 @@ export type FindIntentRequest = z.infer<typeof FindIntentRequest>;
 export type FindIntentResponse = z.infer<typeof FindIntentResponse>;
 export type FindIntentsByContextRequest = z.infer<typeof FindIntentsByContextRequest>;
 export type FindIntentsByContextResponse = z.infer<typeof FindIntentsByContextResponse>;
+export type GetAppMetadataRequest = z.infer<typeof GetAppMetadataRequest>;
+export type GetAppMetadataResponse = z.infer<typeof GetAppMetadataResponse>;
 export type Handshake = z.infer<typeof Handshake>;
 export type Hello = z.infer<typeof Hello>;
 export type ImplementationMetadata = z.infer<typeof ImplementationMetadata>;
@@ -90,11 +97,15 @@ export type Messages = z.infer<typeof messages>;
 export type RequestMessages = z.infer<typeof requestMessages>;
 export type ResponseMessages = z.infer<typeof responseMessages>;
 
-export const requestResponseMap: Record<RequestMessages["type"], ResponseMessages["type"] | undefined> = {
+export const requestResponseMap: Record<
+  RequestMessages["type"],
+  ResponseMessages["type"] | undefined
+> = {
   broadcastRequest: undefined,
   findInstancesRequest: "findInstancesResponse",
   findIntentRequest: "findIntentResponse",
   findIntentsByContextRequest: "findIntentsByContextResponse",
+  getAppMetadataRequest: "getAppMetadataResponse",
   handshake: "connectedAgentsUpdate",
   openRequest: "openResponse",
   raiseIntentRequest: "raiseIntentResponse",

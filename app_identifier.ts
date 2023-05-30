@@ -10,6 +10,7 @@ export const AppIdentifier = z
       .optional()
       .describe(""),
     desktopAgent: z
-      .string(),
+      .string()
+      .optional(),
   })
   .strict();
